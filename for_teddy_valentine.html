@@ -1,152 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Teddy 💖</title>
+  <title>My Love — A Diary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-      color: #fff;
-    }
+    :root {
+      --bg-light: #fffdf7;
+      --bg-dark: #0f0f0f;
+      --text-light: #1a1a1a;
+      --text-dark: #f5f5f5;
+      --accent: #f5c400;
+    }body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.4s, color 0.4s;
+}
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+.lock-screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 30px 25px;
-      text-align: center;
-      max-width: 320px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      animation: fadeIn 1.2s ease;
-    }
+.lock-screen h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
+input {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid var(--accent);
+  background: transparent;
+  color: inherit;
+  outline: none;
+}
+button {
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  background: var(--accent);
+  cursor: pointer;
+}
+.diary {
+  display: none;
+  max-width: 720px;
+  margin: auto;
+  padding: 3rem 1.5rem;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+header h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+.controls button {
+  background: none;
+  border: 1px solid var(--accent);
+  color: inherit;
+  margin-left: 0.5rem;
+}
+.year {
+  margin-bottom: 3rem;
+}
+.year h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+.entry {
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+.entry-title {
+  font-weight: 500;
+}
+.entry-date {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+.page {
+  display: none;
+  line-height: 1.8;
 
-    p {
-      font-size: 1rem;
-      margin-bottom: 18px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    button {
-      border: none;
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    #yesBtn {
-      background: #ff2e63;
-      color: white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    #noBtn {
-      background: white;
-      color: #ff2e63;
-      position: relative;
-    }
-
-    button:hover {
-      transform: scale(1.08);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .hearts span {
-      position: absolute;
-      font-size: 20px;
-      animation: float 4s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.page h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+.back {
+  display: block;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.search {
+  width: 100%;
+  margin-bottom: 2rem;
+}
   </style>
 </head>
-<body>
-
-  <div class="card" id="card">
-    <h1>Teddy ✨</h1>
-    <p>Across the miles, through time zones and quiet nights,</p>
-    <p>my heart somehow always finds its way back to you.</p>
-    <p>So let me ask you, softly… boldly… honestly—</p>
-    <p><strong>Will you be my Valentine?</strong></p>
-
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 🙈</button>
+<body><div class="lock-screen" id="lock">
+  <div>
+    <h1>For My Love Only</h1>
+    <p>A private diary.</p>
+    <input id="pass" type="password" placeholder="Enter our word" />
+    <br />
+    <button onclick="unlock()">Enter</button>
+  </div>
+</div><div class="diary" id="diary">
+  <header>
+    <h2>My Love — A Diary</h2>
+    <div class="controls">
+      <button onclick="toggleDark()">Night</button>
     </div>
-  </div>
+  </header>  <input class="search" placeholder="Search a memory..." onkeyup="searchEntries(this.value)" />  <!-- YEAR -->  <section class="year" data-year="2023">
+    <h3>2023</h3><div class="entry" onclick="openPage('p1')" data-tags="love beginning">
+  <div class="entry-title">Your first letter title</div>
+  <div class="entry-date">12 February 2023</div>
+</div>
 
-  <div class="card hidden" id="success">
-    <h1>She said yes 💘</h1>
-    <p>In every universe, in every lifetime,</p>
-    <p>I’d still choose you, Teddy.</p>
-    <p>This is our little love story—<br>and it’s only just beginning. 🌹</p>
-  </div>
-
-  <div class="hearts" id="hearts"></div>
-
-  <script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const card = document.getElementById('card');
-    const success = document.getElementById('success');
-    const heartsContainer = document.getElementById('hearts');
-
-    noBtn.addEventListener('mouseover', () => {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
-    yesBtn.addEventListener('click', () => {
-      card.classList.add('hidden');
-      success.classList.remove('hidden');
-      startHearts();
-    });
-
-    function startHearts() {
-      setInterval(() => {
-        const heart = document.createElement('span');
-        heart.textContent = '❤️';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.bottom = '0px';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        heartsContainer.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 5000);
-      }, 300);
+<div id="p1" class="page">
+  <span class="back" onclick="closePage()">← Back to diary</span>
+  <h4>Your first letter title</h4>
+  <div class="entry-date">12 February 2023</div>
+  <p>
+    Paste your real letter here.
+    Write exactly as you wrote it.
+    This diary is meant to hold truth.
+  </p>
+</div>
+  </section></div><script>
+  const PASSWORD = "mylove"; // change this
+  function unlock() {
+    if (document.getElementById('pass').value === PASSWORD) {
+      document.getElementById('lock').style.display = 'none';
+      document.getElementById('diary').style.display = 'block';
     }
-  </script>
-
-</body>
+  }
+  function toggleDark() {
+    document.body.classList.toggle('dark');
+  }
+  function openPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.year').forEach(y => y.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+  function closePage() {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.year').forEach(y => y.style.display = 'block');
+  }
+  function searchEntries(query) {
+    query = query.toLowerCase();
+    document.querySelectorAll('.entry').forEach(e => {
+      const text = e.innerText.toLowerCase() + e.dataset.tags;
+      e.style.display = text.includes(query) ? 'block' : 'none';
+    });
+  }
+</script></body>
 </html>
